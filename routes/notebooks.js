@@ -9,12 +9,12 @@ router.get("/", middleware.isLoggedIn, function(req, res){
        if(err){
            console.log(err);
        } else {
-          res.render("campgrounds/index",{notebooks: allNotebooks, page: 'notebooks'});
+          res.render("notebooks/index",{notebooks: allNotebooks, page: 'notebooks'});
        }
     });
 });
 
-//CREATE - Adds new campground
+//CREATE - Adds new notebook
 router.post("/",middleware.isLoggedIn,(req,res)=>{
 	var name = req.body.name;
 	var image = req.body.image;
@@ -29,31 +29,31 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
 			console.log(err);
 		} else {
 			console.log("New Notebook Added!");
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		}
 	});
 });
 
-//NEW - Displays the form to add a new campground
+//NEW - Displays the form to add a new notebook
 router.get("/new",middleware.isLoggedIn,(req,res)=>{
-	res.render("campgrounds/new.ejs");
+	res.render("notebooks/new.ejs");
 });
-//SHOW - Shows more info about one campground
+//SHOW - Shows more info about one notebook
 router.get("/:id",(req,res)=>{
 	Notebook.findById(req.params.id).populate("notes").exec((err,foundNotebook)=>{
 		if(err || !foundNotebook){
 			console.log(err);
 			req.flash("error","Notebook not found");
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		} else {
-			res.render("campgrounds/show",{notebook: foundNotebook});
+			res.render("notebooks/show",{notebook: foundNotebook});
 		}
 	});
 });
 //EDIT ROUTE
 router.get("/:id/edit",middleware.checkCampgroundOwnership,(req,res)=>{
 	Notebook.findById(req.params.id,(err,foundNotebook)=>{
-		res.render("campgrounds/edit",{notebook: foundNotebook});
+		res.render("notebooks/edit",{notebook: foundNotebook});
 	});
 
 
@@ -64,10 +64,10 @@ router.put("/:id",middleware.checkCampgroundOwnership,(req,res)=>{
 	Notebook.findByIdAndUpdate(req.params.id,req.body.notebook,(err,updatedNotebook)=>{
 		if(err){
 			console.log(err);
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		}else{
 			req.flash("success","Notebook successfully updated");
-			res.redirect("/campgrounds/"+req.params.id);
+			res.redirect("/notebooks/"+req.params.id);
 		}
 	});
 });
@@ -76,11 +76,11 @@ router.put("/:id",middleware.checkCampgroundOwnership,(req,res)=>{
 router.delete("/:id",middleware.checkCampgroundOwnership,(req,res)=>{
 	Notebook.findByIdAndRemove(req.params.id,(err)=>{
 		if(err){
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		}else{
 			console.log("Notebook Deleted");
 			req.flash("success","Notebook successfully removed");
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		}
 	});
 });

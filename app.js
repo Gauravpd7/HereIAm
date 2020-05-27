@@ -5,7 +5,6 @@ var express        = require('express'),
 	passport       = require('passport'),
 	LocalStrategy  = require('passport-local'),
     Notebook     = require('./models/notebook'),
-	// seedDB         = require('./seed'),
     Note        = require('./models/note'),
 	User    	   = require('./models/user'),
 	flash	       = require('connect-flash'),
@@ -13,8 +12,8 @@ var express        = require('express'),
 
 
 //Requiring Routes
-var commentRoutes    = require('./routes/comments'),
-	campgroundRoutes = require('./routes/campgrounds'),
+var noteRoutes    = require('./routes/notes'),
+	notebookRoutes = require('./routes/notebooks'),
 	indexRoutes      = require('./routes/index')
 
 mongoose.connect("mongodb+srv://gauravpd7:Bloodsucker@c1@cluster0-qim5j.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true,useFindAndModify: false, useUnifiedTopology: true});
@@ -26,8 +25,6 @@ app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-
-// seedDB();  // SEED THE DATABASE
 
 //========================
 //Passport Configuration
@@ -49,8 +46,8 @@ app.use((req,res,next)=>{
 	res.locals.success = req.flash("success");
 	next();
 });
-app.use("/campgrounds/:id/comments",commentRoutes);
-app.use("/campgrounds",campgroundRoutes);
+app.use("/notebooks/:id/notes",noteRoutes);
+app.use("/notebooks",notebookRoutes);
 app.use("/",indexRoutes);
 
 app.listen(process.env.PORT || 3000,function(){

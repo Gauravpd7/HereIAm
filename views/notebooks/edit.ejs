@@ -5,7 +5,7 @@
 			Edit <%=notebook.name%>
 		</h1>
 		<div style="width: 30%; margin: 25px auto;">
-			<form action="/campgrounds/<%=notebook._id%>?_method=PUT" method="POST">
+			<form action="/notebooks/<%=notebook._id%>?_method=PUT" method="POST">
 				<div class="form-group">
 					<input class="form-control" type="text" name="notebook[name]" placeholder="name" value="<%=notebook.name%>">					
 				</div>
@@ -21,7 +21,7 @@
 					</button>					
 				</div>				
 			</form>
-			<a href="/campgrounds">Go Back</a>
+			<a href="/notebooks">Go Back</a>
 		</div>
 	</div>
 

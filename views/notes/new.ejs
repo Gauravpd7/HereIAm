@@ -5,7 +5,7 @@
 			Add a new Note to <%=notebook.name%>
 		</h1>
 		<div style="width: 30%; margin: 25px auto;">
-			<form action="/campgrounds/<%=notebook._id%>/comments" method="POST">
+			<form action="/notebooks/<%=notebook._id%>/notes" method="POST">
 				<div class="form-group">
 					<input class="form-control" type="text" name="note[text]" placeholder="note">					
 				</div>
@@ -15,7 +15,7 @@
 					</button>					
 				</div>				
 			</form>
-			<a href="/campgrounds/<%=notebook._id%>">Go Back</a>
+			<a href="/notebooks/<%=notebook._id%>">Go Back</a>
 		</div>
 	</div>
 

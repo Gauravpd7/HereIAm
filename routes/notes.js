@@ -4,22 +4,22 @@ var Notebook = require('../models/notebook');
 var Note = require('../models/note');
 var middleware = require('../middleware');
 
-//Comments New
+//Notes New
 router.get("/new",middleware.isLoggedIn,(req,res)=>{
 	Notebook.findById(req.params.id,(err,foundNotebook)=>{
 		if(err){
 			console.log(err);
 		}else{
-			res.render("comments/new",{notebook: foundNotebook});	
+			res.render("notes/new",{notebook: foundNotebook});	
 		}
 	});
 });
-//Comments Create
+//Notes Create
 router.post("/",middleware.isLoggedIn,(req,res)=>{
 	Notebook.findById(req.params.id,(err,foundNotebook)=>{
 		if(err){
 			console.log(err);
-			res.redirect("/campgrounds");
+			res.redirect("/notebooks");
 		}else{
 			Note.create(req.body.note,(err,note)=>{
 				if(err){
@@ -33,7 +33,7 @@ router.post("/",middleware.isLoggedIn,(req,res)=>{
 					foundNotebook.notes.push(note);
 					foundNotebook.save();
 					req.flash("success","Successfully added a note");	 
-					res.redirect("/campgrounds/"+foundNotebook._id);
+					res.redirect("/notebooks/"+foundNotebook._id);
 				}
 			});
 		}
@@ -51,7 +51,7 @@ router.get("/:note_id/edit",middleware.checkCommentOwnership,(req,res)=>{
 			if(err){
 				res.redirect("back");	
 			}else{	
-				res.render("comments/edit",{notebook: foundNotebook,note: foundNote});	
+				res.render("notes/edit",{notebook: foundNotebook,note: foundNote});	
 			}		
 		});		
 	});
@@ -62,7 +62,7 @@ router.put("/:note_id",middleware.checkCommentOwnership,(req,res)=>{
 		if(err){
 			res.redirect("back");
 		}else{
-			res.redirect("/campgrounds/"+req.params.id);
+			res.redirect("/notebooks/"+req.params.id);
 		}
 	});
 });
@@ -74,7 +74,7 @@ router.delete("/:note_id",middleware.checkCommentOwnership,(req,res)=>{
 		}else{
 			console.log("Note Deleted");
 			req.flash("success","Note successfully deleted");
-			res.redirect("/campgrounds/"+req.params.id);
+			res.redirect("/notebooks/"+req.params.id);
 		}
 	})
 });
