@@ -15,6 +15,10 @@ body {
 	background: #b5161b;
 	border: #b5161b;
 	box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.33);
+	margin: 0px 10px;
+}
+#regbtn {
+	min-width: 150px;
 }
 .slideshow { 
   position: fixed;

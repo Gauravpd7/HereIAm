@@ -13,23 +13,20 @@
 		</div>
 		<div class="col-md-9">
 			<div class="thumbnail">
-				<img src="<%=campground.image%>" class="img-responsive">
+				<img src="<%=notebook.image%>" class="img-responsive">
 				<div class="caption-full">
-					<h4 class="pull-right">
-						$<%=campground.price%>/night
-					</h4>
 					<h4>
-						<a><%=campground.name%></a>
+						<a><%=notebook.name%></a>
 					</h4>
 					<p>
-						<%=campground.description%>
+						<%=notebook.description%>
 					</p>
 					<p>
-						<em>Created By <%=campground.author.username%></em>
+						<em>Created By <%=notebook.author.username%></em>
 					</p>
-					<%if(currentUser && campground.author.id.equals(currentUser._id)){ %>
-						<a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-warning btn-xs">Edit</a>
-						<form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST" class="delete_form">
+					<%if(currentUser && notebook.author.id.equals(currentUser._id)){ %>
+						<a href="/campgrounds/<%=notebook._id%>/edit" class="btn btn-warning btn-xs">Edit</a>
+						<form action="/campgrounds/<%=notebook._id%>?_method=DELETE" method="POST" class="delete_form">
 							<button class="btn btn-danger btn-xs">
 								Delete
 							</button>
@@ -39,23 +36,23 @@
 				</div>
 				<div class="well">
 					<div class="text-right">
-						<a href="/campgrounds/<%=campground._id%>/comments/new" class="btn btn-success">Add Comment</a>
+						<a href="/campgrounds/<%=notebook._id%>/comments/new" class="btn btn-success">Add Note</a>
 					</div>
 					<hr>
-					<% campground.comments.forEach(function(comment){ %>
+					<% notebook.notes.forEach(function(note){ %>
 						<div class="row">
 							<div class="col-md-12">
-								<strong><%=comment.author.username%></strong>
+								<strong><%=note.author.username%></strong>
 								<span class="pull-right">10 days ago</span>
 								<p>
-									<%=comment.text%>
+									<%=note.text%>
 								</p>
-								<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+								<%if(currentUser && note.author.id.equals(currentUser._id)){%>
 									<a class="btn btn-xs btn-warning"
-									   href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">
+									   href="/campgrounds/<%=notebook._id%>/comments/<%=note._id%>/edit">
 										Edit
 									</a>	
-									<form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE"
+									<form action="/campgrounds/<%=notebook._id%>/comments/<%=note._id%>?_method=DELETE"
 									  method="POST" class="delete_form">
 									<button class="btn btn-xs btn-danger">Delete</button>
 									</form> 

@@ -1,15 +1,14 @@
 var mongoose = require('mongoose');
 
 //SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
+var notebookSchema = new mongoose.Schema({
 	name: String,
-	price: String,
 	image: String,
 	description: String,
-	comments: [
+	notes: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Comment"
+			ref: "Note"
 		}
 	],
 	author: {
@@ -20,4 +19,4 @@ var campgroundSchema = new mongoose.Schema({
 		username: String
 	}
 });
-module.exports = mongoose.model("Campground",campgroundSchema);
+module.exports = mongoose.model("Notebook",notebookSchema);

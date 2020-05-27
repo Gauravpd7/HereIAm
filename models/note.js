@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 //SCHEMA SETUP
-var commentSchema = new mongoose.Schema({
+var noteSchema = new mongoose.Schema({
 	text: String,
 	author: {
 		id: {
@@ -12,4 +12,4 @@ var commentSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model("Comment",commentSchema);
+module.exports = mongoose.model("Note",noteSchema);

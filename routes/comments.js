@@ -1,64 +1,64 @@
 var express = require('express');
 var router = express.Router({mergeParams: true});
-var Campground = require('../models/campground');
-var Comment = require('../models/comment');
+var Notebook = require('../models/notebook');
+var Note = require('../models/note');
 var middleware = require('../middleware');
 
 //Comments New
 router.get("/new",middleware.isLoggedIn,(req,res)=>{
-	Campground.findById(req.params.id,(err,foundCampground)=>{
+	Notebook.findById(req.params.id,(err,foundNotebook)=>{
 		if(err){
 			console.log(err);
 		}else{
-			res.render("comments/new",{campground: foundCampground});	
+			res.render("comments/new",{notebook: foundNotebook});	
 		}
 	});
 });
 //Comments Create
 router.post("/",middleware.isLoggedIn,(req,res)=>{
-	Campground.findById(req.params.id,(err,foundCampground)=>{
+	Notebook.findById(req.params.id,(err,foundNotebook)=>{
 		if(err){
 			console.log(err);
 			res.redirect("/campgrounds");
 		}else{
-			Comment.create(req.body.comment,(err,comment)=>{
+			Note.create(req.body.note,(err,note)=>{
 				if(err){
 					console.log(err);
 					req.flash("error","Something went wrong");
 				}else{
 					//add username and id to the comment
-					comment.author.id = req.user._id;
-					comment.author.username = req.user.username;
-					comment.save();
-					foundCampground.comments.push(comment);
-					foundCampground.save();
-					req.flash("success","Successfully added comment");	 
-					res.redirect("/campgrounds/"+foundCampground._id);
+					note.author.id = req.user._id;
+					note.author.username = req.user.username;
+					note.save();
+					foundNotebook.notes.push(note);
+					foundNotebook.save();
+					req.flash("success","Successfully added a note");	 
+					res.redirect("/campgrounds/"+foundNotebook._id);
 				}
 			});
 		}
 	});
 });
-//Comments Edit Route
-router.get("/:comment_id/edit",middleware.checkCommentOwnership,(req,res)=>{
+//Notes Edit Route
+router.get("/:note_id/edit",middleware.checkCommentOwnership,(req,res)=>{
 	
-	Campground.findById(req.params.id,(err,foundCampground)=>{
-		if(err || !foundCampground){
-			req.flash("error","Campground not found");
+	Notebook.findById(req.params.id,(err,foundNotebook)=>{
+		if(err || !foundNotebook){
+			req.flash("error","Notebook not found");
 			return res.redirect("back");
 		}
-		Comment.findById(req.params.comment_id,(err,foundComment)=>{
+		Note.findById(req.params.note_id,(err,foundNote)=>{
 			if(err){
 				res.redirect("back");	
 			}else{	
-				res.render("comments/edit",{campground: foundCampground, comment: foundComment});	
+				res.render("comments/edit",{notebook: foundNotebook,note: foundNote});	
 			}		
 		});		
 	});
 });
-//Comments Update
-router.put("/:comment_id",middleware.checkCommentOwnership,(req,res)=>{
-	Comment.findByIdAndUpdate(req.params.comment_id,req.body.comment,(err,updatedComment)=>{
+//Notes Update
+router.put("/:note_id",middleware.checkCommentOwnership,(req,res)=>{
+	Note.findByIdAndUpdate(req.params.note_id,req.body.note,(err,updatedNote)=>{
 		if(err){
 			res.redirect("back");
 		}else{
@@ -66,14 +66,14 @@ router.put("/:comment_id",middleware.checkCommentOwnership,(req,res)=>{
 		}
 	});
 });
-//Comments Destroy Route
-router.delete("/:comment_id",middleware.checkCommentOwnership,(req,res)=>{
-	Comment.findByIdAndRemove(req.params.comment_id,(err)=>{
+//Notes Destroy Route
+router.delete("/:note_id",middleware.checkCommentOwnership,(req,res)=>{
+	Note.findByIdAndRemove(req.params.note_id,(err)=>{
 		if(err){
 			res.redirect("back");
 		}else{
-			console.log("Comment Deleted");
-			req.flash("success","Comment successfully deleted");
+			console.log("Note Deleted");
+			req.flash("success","Note successfully deleted");
 			res.redirect("/campgrounds/"+req.params.id);
 		}
 	})
