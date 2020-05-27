@@ -3,7 +3,7 @@ var router = express.Router({mergeParams: true});
 var Campground = require('../models/campground');
 var  middleware = require('../middleware');
 //INDEX - Shows all campgrounds
-router.get("/", function(req, res){
+router.get("/", middleware.isLoggedIn, function(req, res){
     // Get all campgrounds from DB
     Campground.find({}, function(err, allCampgrounds){
        if(err){

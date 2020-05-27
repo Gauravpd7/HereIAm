@@ -3,13 +3,13 @@
 	<div class="container">
 		<header class="jumbotron">
 			<h1>
-			Welcome to the Campgrounds!
+			View Your Notebooks!
 			</h1>
 			<p>
-				View our hand-picked campgrounds from all over the world
+				Keep track of your projects and meetings using Notebooks! Create daily logs, upload files,images and more!
 			</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="campgrounds/new">Add new campground</a>
+				<a class="btn btn-primary btn-lg" href="campgrounds/new">Create a Notebook</a>
 			</p>
 		</header>
 	</div>
@@ -17,6 +17,7 @@
 
 	<div class="row" style="display:flex; flex-wrap:wrap">
 		<% campgrounds.forEach(function(campground){%>
+		<%if(currentUser && campground.author.id.equals(currentUser._id)){ %>
 		<div class="col-md-3 col-sm-6 text-center">
 			<div class="thumbnail">
 				<img src="<%= campground.image %>">
@@ -28,6 +29,7 @@
 				</p>
 			</div>
 		</div>
+		<%}%>
 		<% }); %>
 	</div>	
 
