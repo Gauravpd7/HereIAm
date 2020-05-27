@@ -22,7 +22,7 @@
 						<%=notebook.description%>
 					</p>
 					<p>
-						<em>Created By <%=notebook.author.username%></em>
+ 						<em>Created by: <%= notebook.author.username %>, <%= moment(notebook.createdAt).fromNow() %></em>
 					</p>
 					<%if(currentUser && notebook.author.id.equals(currentUser._id)){ %>
 						<a href="/notebooks/<%=notebook._id%>/edit" class="btn btn-warning btn-xs">Edit</a>
@@ -43,7 +43,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong><%=note.author.username%></strong>
-								<span class="pull-right">10 days ago</span>
+								<span class="pull-right"><%= moment(note.createdAt).fromNow() %></span>
 								<p>
 									<%=note.text%>
 								</p>
