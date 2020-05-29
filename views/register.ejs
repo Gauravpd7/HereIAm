@@ -5,10 +5,99 @@
     <div style="width: 30%; margin: 25px auto;">
         <form action="/register" method="post">
             <div class="form-group">
-                <input class="form-control" type="text" name="username" placeholder="username">
+                <input class="form-control" type="text" name="profile[username]" placeholder="Username">
             </div>
             <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="password">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+			<div class="form-group">
+				Personal Information - 
+                <input class="form-control" type="text" name="profile[firstName]" placeholder="First name">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[lastName]" placeholder="Last name">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[picture]" placeholder="Profile Picture">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[designation]" placeholder="Designation">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[address]" placeholder="Address">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="email" name="profile[email]" placeholder="Email">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[mobileno]" placeholder="Mobile Number">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[objective]" placeholder="Your Objective">
+            </div>
+			<div class="form-group">
+				Education - I
+                <input class="form-control" type="text" name="profile[education1][uniName]" placeholder="Name of the Institute">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education1][courseName]" placeholder="Specialization">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education1][startDate]" placeholder="Start Date - Month YYYY">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education1][endDate]" placeholder="End Date - Month YYYY">
+            </div>
+			<div class="form-group">
+				Education - II
+                <input class="form-control" type="text" name="profile[education2][uniName]" placeholder="Name of the Institute">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education2][courseName]" placeholder="Specialization">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education2][startDate]" placeholder="Start Date - Month YYYY">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[education2][endDate2]" placeholder="End Date - Month YYYY">
+            </div>
+			<div class="form-group">
+				Experience - I
+                <input class="form-control" type="text" name="profile[experience1][organisation]" placeholder="Name of the Organisation/Company">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience1][designation]" placeholder="Designation">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience1][startDate]" placeholder="Start Date - Month YYYY">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience1][endDate]" placeholder="End Date - Month YYYY">
+            </div>
+			<div class="form-group">
+				Experience - II
+                <input class="form-control" type="text" name="profile[experience2][organisation]" placeholder="Name of the Organisation/Company">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience2][designation]" placeholder="Designation">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience2][startDate]" placeholder="Start Date - Month YYYY">
+            </div>
+			<div class="form-group">
+                <input class="form-control" type="text" name="profile[experience2][endDate]" placeholder="End Date - Month YYYY">
+            </div>
+			<div class="form-group">
+				Skills - 
+                <input class="form-control" type="text" name="profile[skills][skill1]">
+				<input class="form-control" type="text" name="profile[skills][skill2]">
+				<input class="form-control" type="text" name="profile[skills][skill3]">
+				<input class="form-control" type="text" name="profile[skills][skill4]">
+				<input class="form-control" type="text" name="profile[skills][skill5]">
+				<input class="form-control" type="text" name="profile[skills][skill6]">
+				<input class="form-control" type="text" name="profile[skills][skill7]">
+				<input class="form-control" type="text" name="profile[skills][skill8]">
+				<input class="form-control" type="text" name="profile[skills][skill9]">
             </div>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>
