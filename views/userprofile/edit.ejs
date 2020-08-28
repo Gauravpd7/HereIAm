@@ -1,3 +1,145 @@
-<h1>
-	USER PROFILE
-</h1>
+<%- include("../partials/header") %>
+
+<div class="row">
+    <h1 style="text-align: center">Edit Information</h1>
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/profile/<%=user.id%>?_method=PUT" method="POST">
+			<div class="form-group">
+				<h3>
+					Personal Information -
+				</h3>
+				<label for="profile[firstName]">First Name</label>
+                <input class="form-control" type="text" name="profile[firstName]" placeholder="First name" value="<%=user.firstName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[lastName]">Last Name</label>
+                <input class="form-control" type="text" name="profile[lastName]" placeholder="Last name" value="<%=user.lastName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[picture]">Profile Picture</label>
+                <input class="form-control" type="text" name="profile[picture]" placeholder="Profile Picture" value="<%=user.picture%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[designation]">Designation</label>
+                <input class="form-control" type="text" name="profile[designation]" placeholder="Designation" value="<%=user.designation%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[address]">Address</label>
+                <input class="form-control" type="text" name="profile[address]" placeholder="Address" value="<%=user.address%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[email]">Email</label>
+                <input class="form-control" type="email" name="profile[email]" placeholder="Email" value="<%=user.email%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[mobileno]">Mobile Number</label>
+                <input class="form-control" type="text" name="profile[mobileno]" placeholder="Mobile Number" value="<%=user.mobileno%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[objective]">Objective</label>
+                <input class="form-control" type="text" name="profile[objective]" placeholder="Your Objective" value="<%=user.objective%>">
+            </div>
+			<br>
+			<div class="form-group">
+				<h3>
+					Education - I
+				</h3>
+				<label for="profile[education1][uniName]">Name of the Institute</label>
+                <input class="form-control" type="text" name="profile[education1][uniName]" placeholder="Name of the Institute" value="<%=user.education1.uniName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education1][courseName]">Specialization</label>
+                <input class="form-control" type="text" name="profile[education1][courseName]" placeholder="Specialization" value="<%=user.education1.courseName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education1][startDate]">Start Date</label>
+                <input class="form-control" type="text" name="profile[education1][startDate]" placeholder="Start Date - Month YYYY" value="<%=user.education1.startDate%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education1][endDate]">End Date</label>
+                <input class="form-control" type="text" name="profile[education1][endDate]" placeholder="End Date - Month YYYY" value="<%=user.education1.endDate%>">
+            </div>
+			<br>
+			<div class="form-group">
+				<h3>
+					Education - II
+				</h3>
+				<label for="profile[education2][uniName]">Name of the Institute</label>
+                <input class="form-control" type="text" name="profile[education2][uniName]" placeholder="Name of the Institute" value="<%=user.education2.uniName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education2][courseName]">Specialization</label>
+                <input class="form-control" type="text" name="profile[education2][courseName]" placeholder="Specialization" value="<%=user.education2.courseName%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education2][startDate]">Start Date</label>
+                <input class="form-control" type="text" name="profile[education2][startDate]" placeholder="Start Date - Month YYYY" value="<%=user.education2.startDate%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[education2][endDate2]">End Date</label>
+                <input class="form-control" type="text" name="profile[education2][endDate]" placeholder="End Date - Month YYYY" value="<%=user.education2.endDate%>">
+            </div>
+			<br>
+			<div class="form-group">
+				<h3>
+					Experience - I
+				</h3>
+				<label for="profile[experience1][organisation]">Name of the Organisation/Company</label>
+                <input class="form-control" type="text" name="profile[experience1][organisation]" placeholder="Name of the Organisation/Company" value="<%=user.experience1.organisation%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience1][designation]">Designation</label>
+                <input class="form-control" type="text" name="profile[experience1][designation]" placeholder="Designation" value="<%=user.experience1.designation%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience1][startDate]">Start Date</label>
+                <input class="form-control" type="text" name="profile[experience1][startDate]" placeholder="Start Date - Month YYYY" value="<%=user.experience1.startDate%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience1][endDate]">End Date</label>
+                <input class="form-control" type="text" name="profile[experience1][endDate]" placeholder="End Date - Month YYYY" value="<%=user.experience1.endDate%>">
+            </div>
+			<br>
+			<div class="form-group">
+				<h3>
+					Experience - II
+				</h3>
+				<label for="profile[experience2][organisation]">Name of the Organisation/Company</label>
+                <input class="form-control" type="text" name="profile[experience2][organisation]" placeholder="Name of the Organisation/Company" value="<%=user.experience2.organisation%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience2][designation]">Designation</label>
+                <input class="form-control" type="text" name="profile[experience2][designation]" placeholder="Designation" value="<%=user.experience2.designation%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience2][startDate]">Start Date</label>
+                <input class="form-control" type="text" name="profile[experience2][startDate]" placeholder="Start Date - Month YYYY" value="<%=user.experience2.startDate%>">
+            </div>
+			<div class="form-group">
+				<label for="profile[experience2][endDate]">End Date</label>
+                <input class="form-control" type="text" name="profile[experience2][endDate]" placeholder="End Date - Month YYYY" value="<%=user.experience2.endDate%>">
+            </div>
+			<br>
+			<div class="form-group">
+				<h3>
+					Skills - 
+				</h3> 
+                <input class="form-control" type="text" name="profile[skills][skill1]" value="<%=user.skills.skill1%>">
+				<input class="form-control" type="text" name="profile[skills][skill2]" value="<%=user.skills.skill2%>">
+				<input class="form-control" type="text" name="profile[skills][skill3]" value="<%=user.skills.skill3%>">
+				<input class="form-control" type="text" name="profile[skills][skill4]" value="<%=user.skills.skill4%>">
+				<input class="form-control" type="text" name="profile[skills][skill5]" value="<%=user.skills.skill5%>">
+				<input class="form-control" type="text" name="profile[skills][skill6]" value="<%=user.skills.skill6%>">
+				<input class="form-control" type="text" name="profile[skills][skill7]" value="<%=user.skills.skill7%>">
+				<input class="form-control" type="text" name="profile[skills][skill8]" value="<%=user.skills.skill8%>">
+				<input class="form-control" type="text" name="profile[skills][skill9]" value="<%=user.skills.skill9%>">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Edit</button>
+            </div>
+        </form>
+        <a href="/notebooks">Go Back</a>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

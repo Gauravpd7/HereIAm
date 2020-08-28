@@ -43,7 +43,7 @@
 			  		<li><a href="/profile/edit">Edit Profile</a></li> 
 			  <% } %>
 	              
-                  <li class="<%= typeof page !== 'undefined' && page === 'profile' ? 'active' : '' %>"><a href="/profile">Signed In As <%= currentUser.username %></a></li>
+                  <li class="<%= typeof page !== 'undefined' && page === 'profile' ? 'active' : '' %>"><a href="/profile/<%= currentUser.id %>">Signed In As <%= currentUser.username %></a></li>
                   <li><a href="/logout">Logout</a></li>
               <% } %>
           </ul>

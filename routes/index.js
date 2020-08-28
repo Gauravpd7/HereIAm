@@ -48,12 +48,41 @@ router.get("/logout",(req,res)=>{
 //============================
 //Setting up user profile
 //============================
-router.get("/profile",middleware.isLoggedIn,(req,res)=>{
-	res.render("userprofile/profile",{page: 'profile'});
+router.get("/profile/:id",middleware.isLoggedIn,function(req,res){
+	User.findById(req.params.id,function(err,foundUser){
+		if(err){
+			console.log(err);
+			req.flash("Error!", "Something went wrong...");
+			res.redirect("/");
+		}
+		res.render("userprofile/profile",{page: 'profile', user: foundUser});
+	});
+	
 });
 
-router.get("/profile/edit",middleware.isLoggedIn,(req,res)=>{
-	res.render("userprofile/edit");
+// EDIT FORM FOR USER PROFILE
+router.get("/profile/:id/edit",middleware.isLoggedIn,(req,res)=>{
+	User.findById(req.params.id,function(err,foundUser){
+		if(err){
+			console.log(err);
+			req.flash("Error!", "Something went wrong...");
+			res.redirect("/");
+		}
+		res.render("userprofile/edit",{user: foundUser});
+	});
+});
+
+// PUT ROUTE FOR EDITING USER PROFILE
+router.put("/profile/:id",middleware.isLoggedIn,(req,res)=>{
+	User.findByIdAndUpdate(req.params.id,req.body.profile,(err,updatedProfile)=>{
+		if(err){
+			console.log(err);
+			res.redirect("/notebooks");
+		}else{
+			req.flash("success","Profile successfully updated");
+			res.redirect("/profile/"+req.params.id);
+		}
+	});
 });
 
 module.exports = router;

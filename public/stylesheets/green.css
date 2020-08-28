@@ -158,7 +158,7 @@ a:hover {
 }
 
 h1  {
-	width:250px;
+	width:500px;
 	font-size:42px;
 	color:#315a60;
 	margin-bottom:3px;
@@ -403,7 +403,7 @@ img.portrait {
 /* ----------------------------------------- */
 
 .self {
-	width:250px;
+	width:500px;
 	float:left;
 	padding-top:11px;
 	margin-left:38px;

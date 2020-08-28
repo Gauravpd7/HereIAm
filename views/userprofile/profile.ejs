@@ -22,7 +22,7 @@
 			<ul>
 				<li><a class='north' href="javascript:window.print()" title="Print"><img src="images/icn-print.jpg" alt="" /></a></li>
 				<li><a href="/notebooks" id="backbtn" title="Back to Notebooks">Notebooks</a></li>
-				<li><a href="/profile/edit" id="editbtn" title="Edit Resume">Edit</a></li>
+				<li><a href="/profile/<%=user.id%>/edit" id="editbtn" title="Edit Resume">Edit</a></li>
 			</ul>
 		</div>
 	<!-- Begin Wrapper -->
@@ -35,47 +35,47 @@
 		  <div id="paper-mid">
 			<div class="entry">
 			  <!-- Begin Image -->
-			  <img class="portrait" src="https://images.unsplash.com/photo-1503235930437-8c6293ba41f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="John Smith" />
+			  <img class="portrait" src="<%=user.picture%>" alt="John Smith" />
 			  <!-- End Image -->
 			  <!-- Begin Personal Information -->
 			  <div class="self">
-				<h1 class="name">John Smith <br />
-				  <span>Interactive Designer</span></h1>
+				<h1><%=user.firstName + " " + user.lastName %><br><br></h1>
+				  <h1><span><%=user.designation%></span></h1>
 				<ul>
-				  <li class="ad">111 Lorem Street, 34785, Ipsum City</li>
-				  <li class="mail">johnsmith@business.com</li>
-				  <li class="tel">+11 444 555 22 33</li>
+				  <li class="ad"><%=user.address%></li>
+				  <li class="mail"><%=user.email%></li>
+				  <li class="tel"><%=user.mobileno%></li>
 				</ul>
 			  </div>
 			</div>
 			<div class="entry">
 			  <h2>OBJECTIVE</h2>
-			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim viverra nibh sed varius. Proin bibendum nunc in sem ultrices posuere. Aliquam ut aliquam lacus.</p>
+			  <p><%=user.objective%></p>
 			</div>
 			<div class="entry">
 			  <h2>EDUCATION</h2>
 			  <div class="content">
-				<h3>Sep 2005 - Feb 2007</h3>
-				<p>Academy of Art University, London <br />
-				  <em>Master in Communication Design</em></p>
+				<h3><%=user.education1.startDate%> - <%=user.education1.endDate%></h3>
+				<p><%=user.education1.uniName%><br />
+				  <em><%=user.education1.courseName%></em></p>
 			  </div>
 			  <div class="content">
-				<h3>Sep 2001 - Jun 2005</h3>
-				<p>University of Art &amp; Design, New York <br />
-				  <em>Bachelor of Science in Graphic Design</em></p>
+				<h3><%=user.education2.startDate%> - <%=user.education2.endDate%></h3>
+				<p><%=user.education2.uniName%><br />
+				  <em><%=user.education2.courseName%></em></p>
 			  </div>
 			</div>
 			<div class="entry">
 			  <h2>EXPERIENCE</h2>
 			  <div class="content">
-				<h3>May 2009 - Feb 2010</h3>
-				<p>Agency Creative, London <br />
-				  <em>Senior Web Designer</em></p>
+				<h3><%=user.experience1.startDate%> - <%=user.experience1.endDate%></h3>
+				<p><%=user.experience1.organisation%><br />
+				  <em><%=user.experience1.designation%></em></p>
 			  </div>
 			  <div class="content">
-				<h3>Jun 2007 - May 2009</h3>
-				<p>Junior Web Designer <br />
-				  <em>Bachelor of Science in Graphic Design</em></p>
+				<h3><%=user.experience2.startDate%> - <%=user.experience2.endDate%></h3>
+				<p><%=user.experience2.organisation%><br />
+				  <em><%=user.experience2.designation%></em></p>
 			  </div>
 			</div>
 			<div class="entry">
@@ -83,15 +83,14 @@
 			  <div class="content">
 				<h3></h3>
 				<ul class="skills">
-				  <li>Photoshop</li>
-				  <li>Illustrator</li>
-				  <li>InDesign</li>
-				  <li>Flash</li>
-				  <li>Fireworks</li>
-				  <li>Dreamweaver</li>
-				  <li>After Effects</li>
-				  <li>Cinema 4D</li>
-				  <li>Maya</li>
+					<% var count = 0 %>
+					<% Object.keys(user.skills).forEach(function(skill){ %>
+						<% if(count == 0){ %>
+							<% count++; %>
+						<% }else{%>
+								<li><%= user.skills[skill] %></li>
+						<% } %>
+					<% }) %>
 				</ul>
 			  </div>
 			</div>
